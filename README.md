@@ -16,9 +16,12 @@ pip install -r requirements.txt
 ## Getting Started
 Follow these steps to get the program up and running:
 
-Run collect_data.py to collect images.
-Run create_dataset.py to generate the data.pickle file.
-Run train_model.py to generate the ML model.
-Finally, run main.py to run the application!
+->Run collect_data.py to collect images.
+
+->Run create_dataset.py to generate the data.pickle file.
+
+->Run train_model.py to generate the ML model.
+
+->Finally, run main.py to run the application!
 
 **Note: The repository already contains the model and data files. You only need to install the required libraries and run main.py. The above steps are required only if you want to create your own dataset/ML model.**
