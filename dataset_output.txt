@@ -42,3 +42,6 @@ Labels:
 
 Labels Size:
 1769
+
+Output of train_model.py
+99.15254237288136% of samples were classified correctly !
