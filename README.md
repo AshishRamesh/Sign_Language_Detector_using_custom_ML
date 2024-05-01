@@ -3,7 +3,7 @@
 This project is capable of reading 31 different signs, including 26 alphabets and 5 words.
 
 ![Reference Images](ref_1.png)
-![Reference Image 2](ref_2.png)
+![Reference Image 2](ref_2.jpg)
 
 The following words can be recognized: Yes, No , Please, Thank You, Hello
 
