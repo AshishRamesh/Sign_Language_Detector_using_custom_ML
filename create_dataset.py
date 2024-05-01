@@ -26,7 +26,8 @@ for dir_ in os.listdir(DATA_DIR):
 
         img = cv2.imread(os.path.join(DATA_DIR, dir_, img_path))
         img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-
+        
+        #Images being processed
         results = hands.process(img_rgb)
         if results.multi_hand_landmarks:
             for hand_landmarks in results.multi_hand_landmarks:
@@ -51,6 +52,7 @@ print(len(data_aux))
 print(labels)
 print(len(labels))
 
+#Saving data to a pickle file
 f = open('data.pickle', 'wb')
 pickle.dump({'data': data, 'labels': labels}, f)
 f.close()

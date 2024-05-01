@@ -6,6 +6,7 @@ import numpy as np
 model_dict = pickle.load(open('./model.p', 'rb'))
 model = model_dict['model']
 
+#Video capture
 cap = cv2.VideoCapture(0)
 
 mp_hands = mp.solutions.hands
@@ -14,9 +15,14 @@ mp_drawing_styles = mp.solutions.drawing_styles
 
 hands = mp_hands.Hands(static_image_mode=True, min_detection_confidence=0.3)
 
-labels_dict = {0:"A",1:"B",2:"C",3:"D",4:"E",5:"F",6:"G",7:"H",8:"I",9:"J",10:"K"
-        ,11:"L",12:"M",13:"N",14:"O",15:"P",16:"Q",17:"R",18:"S",19:"T",20:"U"
-        ,21:"V",22:"W",23:"X",24:"Y",25:"Z",26:"Yes",27:"No",28:"Please",29:"Thank You",30:"Hello"}
+#Labels for the model
+labels_dict = {0: "A", 1: "B", 2: "C", 3: "D", 4: "E", 5: "F", 6: "G", 7: "H", 8: "I", 9: "J", 10: "K",
+               11: "L", 12: "M", 13: "N", 14: "O", 15: "P", 16: "Q", 17: "R", 18: "S", 19: "T", 20: "U",
+               21: "V", 22: "W", 23: "X", 24: "Y", 25: "Z", 26: "Yes", 27: "No", 28: "Please", 29: "Thank You",
+               30: "Hello"}
+
+bottom_bar = np.zeros((100, 640, 3), dtype=np.uint8)
+bottom_bar.fill(255)
 
 while True:
 
@@ -67,11 +73,16 @@ while True:
 
         predicted_character = labels_dict[int(prediction[0])]
 
-        # Display the detected letter in the top-left corner
-        cv2.putText(frame, predicted_character, (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 1.3, (0, 0, 0), 3,
+        # Reset the bottom bar to a blank white bar
+        bottom_bar.fill(255)
+
+        # Display the detected letter on the white bar
+        cv2.putText(bottom_bar, predicted_character, (20, 60), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 2,
                     cv2.LINE_AA)
 
-    cv2.imshow('frame', frame)
+    # Display the frame and the bottom bar
+    frame_with_bottom_bar = np.vstack((frame, bottom_bar))
+    cv2.imshow('frame', frame_with_bottom_bar)
 
     key = cv2.waitKey(1) & 0xFF
     if key == 27:  # ESC key
